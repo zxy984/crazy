@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Reality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .bg-animation{
+      position:fixed;
+      width:100%;
+      height:100%;
+      z-index:-1;
+      overflow:hidden;
+    }
+
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,0.05);
+      animation:float 12s infinite linear;
+    }
+
+    .circle:nth-child(1){width:200px;height:200px;left:10%;top:20%;}
+    .circle:nth-child(2){width:300px;height:300px;right:10%;top:10%;animation-duration:18s;}
+    .circle:nth-child(3){width:150px;height:150px;left:40%;bottom:10%;animation-duration:14s;}
+
+    @keyframes float{
+      0%{transform:translateY(0) rotate(0deg);}
+      100%{transform:translateY(-1000px) rotate(720deg);}
+    }
+
+    header{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
+      position:relative;
+    }
+
+    header h1{
+      font-size:4rem;
+      background:linear-gradient(90deg,#00f7ff,#ff00f7);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{filter:drop-shadow(0 0 10px #00f7ff);}
+      to{filter:drop-shadow(0 0 25px #ff00f7);}
+    }
+
+    header p{
+      margin-top:20px;
+      font-size:1.2rem;
+      max-width:800px;
+      line-height:1.8;
+      color:#ddd;
+    }
+
+    .scroll{
+      margin-top:40px;
+      animation:bounce 1.5s infinite;
+      font-size:1.2rem;
+      color:#00f7ff;
+    }
+
+    @keyframes bounce{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(12px);}
+    }
+
+    section{
+      padding:80px 10%;
+    }
+
+    .title{
+      text-align:center;
+      font-size:2.5rem;
+      margin-bottom:60px;
+      color:#00f7ff;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      padding:30px;
+      transition:0.5s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:'';
+      position:absolute;
+      width:120px;
+      height:120px;
+      background:rgba(0,247,255,0.2);
+      border-radius:50%;
+      top:-40px;
+      right:-40px;
+      transition:0.5s;
+    }
+
+    .card:hover::before{
+      transform:scale(3);
+    }
+
+    .card:hover{
+      transform:translateY(-15px) scale(1.03);
+      box-shadow:0 0 30px rgba(0,247,255,0.4);
+    }
+
+    .card h2{
+      margin-bottom:15px;
+      color:#fff;
+      position:relative;
+      z-index:1;
+    }
+
+    .card p{
+      color:#ddd;
+      line-height:1.8;
+      position:relative;
+      z-index:1;
+    }
+
+    .quote-section{
+      text-align:center;
+      padding:100px 10%;
+    }
+
+    .quote{
+      font-size:2rem;
+      font-weight:600;
+      line-height:1.8;
+      color:#fff;
+      animation:pulse 3s infinite;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:0.8;}
+      50%{transform:scale(1.03);opacity:1;}
+      100%{transform:scale(1);opacity:0.8;}
+    }
+
+    .timeline{
+      position:relative;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .timeline::after{
+      content:'';
+      position:absolute;
+      width:6px;
+      background:#00f7ff;
+      top:0;
+      bottom:0;
+      left:50%;
+      margin-left:-3px;
+    }
+
+    .container{
+      padding:20px 40px;
+      position:relative;
+      width:50%;
+    }
+
+    .left{left:0;}
+    .right{left:50%;}
+
+    .content{
+      padding:25px;
+      background:rgba(255,255,255,0.06);
+      border-radius:20px;
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .content h3{
+      margin-bottom:10px;
+      color:#00f7ff;
+    }
+
+    footer{
+      text-align:center;
+      padding:60px 20px;
+      color:#aaa;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:30px;
+      padding:15px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      color:white;
+      background:linear-gradient(90deg,#00f7ff,#ff00f7);
+      transition:0.5s;
+      font-weight:600;
+      box-shadow:0 0 20px rgba(0,247,255,0.4);
+    }
+
+    .btn:hover{
+      transform:scale(1.1);
+      box-shadow:0 0 40px rgba(255,0,247,0.6);
+    }
+
+    @media(max-width:900px){
+      .timeline::after{left:31px;}
+      .container{width:100%;padding-left:70px;padding-right:25px;}
+      .right{left:0%;}
+      header h1{font-size:2.8rem;}
+      .quote{font-size:1.5rem;}
+    }
+  </style></head>
+<body><div class="bg-animation">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div><header>
+  <h1>LIFE IS REALITY</h1>
+  <p>
+    Life is not about motivation. It is about reality, emotions, behavior, silence, ego, and truth that people hide.
+    Everything feels different when you stop expecting.
+  </p><a href="#lessons" class="btn">Enter Reality</a>
+
+  <div class="scroll">▼ Scroll Down ▼</div>
+</header><section id="lessons">
+  <h1 class="title">Deep Emotional Reality</h1>  <div class="cards"><div class="card">
+  <h2>Trust Reality</h2>
+  <p>People don’t break trust suddenly. They slowly show you who they really are.🥀</p>
+</div>
+
+<div class="card">
+  <h2>Universal Reality, never trust on two things.🎀</h2>
+  <p>1. A crying girl, when she was with you and she pretended like you were everything for her during those days.🥀 </p>
+  <p>2. A smile man when he had lost everything but still try to pretend like  he is okay with that all the pains.🙃</p>
+</div>
+
+<div class="card">
+  <h2>Love Reality</h2>
+  <p>Feelings fade when attention fades. Emotional attachment is temporary.🍃</p>
+</div>
+
+<div class="card">
+  <h2>Family Reality</h2>
+  <p>Even close people can misunderstand you deeply without realizing your pain.🤌</p>
+</div>
+
+<div class="card">
+  <h2>Money Reality</h2>
+  <p>Money changes respect, behavior, and sometimes even relationships.💯</p>
+</div>
+
+<div class="card">
+  <h2>Silence Reality</h2>
+  <p>Silence is not weakness. It is the loudest answer to many things.✨</p>
+</div>
+
+
+
+<div class="card">
+  <h2>Expectation Reality</h2>
+  <p>Expectation is the root of emotional pain.</p>
+</div>
+
+  </div>
+</section><section class="quote-section">
+  <div class="quote">
+    “People don’t hurt you directly… your expectations from them do.”
+  </div>
+</section><section>
+  <h1 class="title">Life Timeline</h1>  <div class="timeline"><div class="container left">
+  <div class="content">
+    <h3>Trust Phase</h3>
+    <p>You believe everyone is honest.</p>
+  </div>
+</div>
+
+<div class="container right">
+  <div class="content">
+    <h3>Experience Phase</h3>
+    <p>You see real faces behind fake smiles.</p>
+  </div>
+</div>
+
+<div class="container left">
+  <div class="content">
+    <h3>Reality Phase</h3>
+    <p>You stop expecting from people.</p>
+  </div>
+</div>
+
+<div class="container right">
+  <div class="content">
+    <h3>Peace Phase</h3>
+    <p>You choose silence and self respect.</p>
+  </div>
+</div>
+
+  </div>
+</section><section class="quote-section">
+  <div class="quote">
+    “Protect your emotions. Not everyone deserves your time, energy, or trust.”
+  </div>
+</section><footer>
+  <h2>Life Lessons Website</h2>
+  <p>
+    Made with passion • Dreams • Reality • Growth • Self Respect
+  </p>
+  <br>
+  <p style="font-size:1.2rem; color:#00f7ff; font-weight:700; letter-spacing:1px; text-shadow:0 0 10px rgba(0,247,255,0.6);">
+    This Website Was Made By RITIK
+  </p>
+</footer></body>
+</html>
